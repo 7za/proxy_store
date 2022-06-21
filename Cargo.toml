@@ -1,0 +1,32 @@
+[package]
+name = "rs-controller"
+version = "0.1.0"
+edition = "2021"
+
+
+[profile.dev]
+debug = 2
+
+[profile.release]
+overflow-checks = false
+lto = true
+opt-level = 2
+
+[profile.release.package."*"] # +
+opt-level = 2
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hyper = { version = "0.14", features = ["http1", "client", "server", "stream", "tcp", "runtime"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+futures-util = "0.3"
+futures = "0.3"
+rayon = "1.5"
+bytes = "1.1"
+rand = "0.8"
+num-bigint = { version =  "0.4", features = ["rand"] }
+lazy_static = "1.4"
+jemallocator = "0.3"
+liberasurecode = { version = "1.0", path = "../liberasurecode" }
+erasurecode = { version = "0.1.0", path = "../erasurecode"}
